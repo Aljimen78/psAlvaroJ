@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Álvaro Jiménez</title>
+    <meta name="description" content="Más de 15 años de experiencia en bienestar y prevención en infancia y adolescencia. Recursos psicoeducativos y herramientas profesionales.">
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="/images/ico.jpeg">
+    <!-- Estilos Centralizados -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* Estilos específicos de index.html */
+        #inicio {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: var(--color-blanco);
+            background-image: url('https://images.unsplash.com/photo-1519791883288-dc8bd696e667?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        #inicio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(86, 0, 156, 0.6);
+        }
+
+        #inicio .container {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #inicio h1 {
+            font-size: 3.5rem;
+            color: var(--color-blanco);
+            margin-bottom: 1rem;
+        }
+
+        #inicio .lead {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            #inicio h1 {
+                font-size: 2.5rem;
+            }
+            #inicio .lead {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Estilos para acordeón */
+        .accordion-button:not(.collapsed) {
+            background-color: var(--color-primario-azul);
+            color: var(--color-blanco);
+        }
+
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(46, 139, 87, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-texto-principal);
+            color: var(--color-fondo-claro);
+            padding: 3rem 0;
+        }
+
+        footer a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--color-acento-calido);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3">
+            <div class="container">
+                <a class="navbar-brand fs-4" href="#inicio" style="color: var(--color-primario-azul2); font-family: var(--font-family-heading); font-weight: 700;">Álvaro Jiménez</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sobre-mi">Sobre mí</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#recursos">Recursos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="recursos.html">Catálogo completo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECCIÓN HERO -->
+        <section id="inicio">
+            <div class="container">
+                <h1 class="display-3 fw-bold">Herramientas para un crecimiento seguro y feliz</h1>
+                <p class="lead my-4">Más de 15 años de experiencia dedicados al bienestar y la prevención en la infancia y adolescencia.</p>
+                <div>
+                    <a href="#recursos" class="btn btn-secondary btn-lg mx-2">Explorar recursos</a>
+                    <a href="#contacto" class="btn btn-primary btn-lg mx-2">Contactar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SOBRE MÍ -->
+        <section id="sobre-mi" class="section-padding">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 text-center">
+                        <img src="/images/fotoPerfil.webp" 
+                             class="img-fluid rounded-circle shadow-lg" 
+                             alt="Retrato profesional de Álvaro Jiménez"
+                             style="max-width: 350px;">
+                    </div>
+                    <div class="col-lg-7 mt-5 mt-lg-0">
+                        <h2 class="mb-4">Mi compromiso y experiencia</h2>
+                        <p class="lead">Soy un profesional apasionado por el desarrollo saludable de niños, niñas y adolescentes. Mi enfoque se centra en crear entornos seguros y de apoyo, tanto en el ámbito familiar como comunitario.</p>
+                        <p>Con más de 15 años de experiencia en el campo de la psicología infantil y adolescente, he desarrollado herramientas prácticas y basadas en evidencia para apoyar a familias, educadores y profesionales de la salud mental. Mi trabajo se fundamenta en la prevención, la psicoeducación y el fortalecimiento de habilidades socioemocionales.</p>
+                        <h4 class="mt-4" style="color: var(--color-secundario-verde);">Áreas de experiencia:</h4>
+                        <ul>
+                            <li>Prevención de la violencia y el abuso infantil</li>
+                            <li>Apoyo a comunidades vulnerables</li>
+                            <li>Desarrollo de habilidades socioemocionales</li>
+                            <li>Parentalidad positiva</li>
+                            <li>Intervención en crisis y apoyo psicológico</li>
+                        </ul>
+                        <a href="recursos.html" target="_blank" class="btn btn-accent mt-3">
+                            <i class="fas fa-external-link-alt me-2"></i>Ver catálogo completo de recursos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN RECURSOS DESTACADOS -->
+        <section id="recursos" class="section-padding bg-light-custom">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2>Recursos destacados</h2>
+                    <p class="lead">Material diseñado específicamente para jóvenes, padres y profesionales</p>
+                    <p class="text-muted">Selección de los recursos más relevantes de mi portafolio profesional</p>
+                </div>
+
+                <!-- Apps Web Psicoeducativas -->
+                <div class="mb-5">
+                    <h3 class="text-center mb-4" style="color: var(--color-secundario-verde);">
+                        <i class="fas fa-laptop-code me-2"></i>Apps web interactivas
+                    </h3>
+                    <div class="row g-4">
+                        <!-- Aventura de emociones -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-gamepad fa-3x mb-3" style="color: var(--color-acento-calido);"></i>
+                                    <h5 class="card-title">Aventura de emociones</h5>
+                                    <p class="card-meta text-muted small">Público: Niños y adolescentes</p>
+                                    <p class="card-text">Juego interactivo para la exploración lúdica y comprensión activa de las emociones en un entorno digital seguro.</p>
+                                    <a href="recursos.html#minijumanji" target="_blank" class="btn btn-accent">Ver más</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Brújula de conflictos -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-compass fa-3x mb-3" style="color: var(--color-acento-calido);"></i>
+                                    <h5 class="card-title">Brújula de soluciones</h5>
+                                    <p class="card-meta text-muted small">Público: Adolescentes y jóvenes</p>
+                                    <p class="card-text">Herramienta digital para el desarrollo de habilidades de resolución de conflictos de manera efectiva.</p>
+                                    <a href="recursos.html#brujula-conflictos" target="_blank" class="btn btn-accent">Ver más</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emocionómetro -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-heart-pulse fa-3x mb-3" style="color: var(--color-acento-calido);"></i>
+                                    <h5 class="card-title">Emocionómetro digital</h5>
+                                    <p class="card-meta text-muted small">Público: Niños y adolescentes</p>
+                                    <p class="card-text">Aplicación para el reconocimiento, nombramiento y cuantificación de estados emocionales.</p>
+                                    <a href="recursos.html#emocionometro" target="_blank" class="btn btn-accent">Ver más</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worksheets y Plantillas -->
+                <div class="mb-5">
+                    <h3 class="text-center mb-4" style="color: var(--color-secundario-verde);">
+                        <i class="fas fa-file-pdf me-2"></i>Worksheets profesionales
+                    </h3>
+                    <div class="row g-4">
+                        <!-- Echo - Escucha Activa -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-ear-listen fa-3x mb-3" style="color: var(--color-acento-calido);"></i>
+                                    <h5 class="card-title">Seamos grandes oyentes con Echo</h5>
+                                    <p class="card-meta text-muted small">Habilidad: Escucha activa</p>
+                                    <p class="card-text">Plantilla que enseña las 4 reglas clave de la escucha activa utilizando un personaje amigable.</p>
+                                    <a href="recursos.html#echo-escucha" target="_blank" class="btn btn-accent">Ver más</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Receta Amistad -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-users fa-3x mb-3" style="color: var(--color-acento-calido);"></i>
+                                    <h5 class="card-title">Receta de la amistad</h5>
+                                    <p class="card-meta text-muted small">Habilidad: Habilidades sociales</p>
+                                    <p class="card-text">Actividad creativa que usa la metáfora de una receta para definir los ingredientes de una amistad saludable.</p>
+                                    <a href="recursos.html#receta-amistad" target="_blank" class="btn btn-accent">Ver más</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kit de Calma -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-spa fa-3x mb-3" style="color: var(--color-acento-calido);"></i>
+                                    <h5 class="card-title">Kit de calma de Zen</h5>
+                                    <p class="card-meta text-muted small">Habilidad: Regulación emocional</p>
+                                    <p class="card-text">Caja de herramientas con técnicas de regulación emocional como mindfulness y la técnica de Cinco Sentidos.</p>
+                                    <a href="recursos.html#kit-calma" target="_blank" class="btn btn-accent">Ver Más</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA para ver todos los recursos -->
+                <div class="text-center mt-5">
+                    <p class="lead mb-3">¿Quieres explorar el catálogo completo?</p>
+                    <a href="recursos.html" target="_blank" class="btn btn-primary btn-lg">
+                        <i class="fas fa-th-large me-2"></i>Ver todos los recursos
+                    </a>
+                    <p class="text-muted mt-3 small">Accede a apps web, worksheets, herramientas corporativas y crea packs personalizados</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONTACTO -->
+        <section id="contacto" class="section-padding">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2>Hablemos</h2>
+                    <p class="lead">Si tienes alguna pregunta o te interesa una colaboración, no dudes en escribirme.</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <form id="contactForm" novalidate>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                <div class="invalid-feedback">Por favor, ingresa tu nombre.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">Por favor, ingresa un email válido.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="asunto" class="form-label">Asunto</label>
+                                <input type="text" class="form-control" id="asunto" name="asunto" required>
+                                <div class="invalid-feedback">Por favor, ingresa un asunto.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="mensaje" class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+                                <div class="invalid-feedback">Por favor, escribe tu mensaje.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                            <div id="form-message" class="mt-3"></div>
+                        </form>
+                    </div>
+                    <div class="col-lg-5 mt-5 mt-lg-0">
+                        <h4 class="mb-3">Información de contacto</h4>
+                        <p><i class="fas fa-envelope me-2" style="color: var(--color-primario-azul);"></i> <strong>Email:</strong> <a href="mailto:aljimenez.n@gmail.com">aljimenez.n@gmail.com</a></p>
+                        <p><i class="fas fa-map-marker-alt me-2" style="color: var(--color-primario-azul);"></i> <strong>Ubicación:</strong> Colombia (Atención online)</p>
+                        
+                        <h4 class="mt-5 mb-3">Sígueme en redes</h4>
+                        <p>Comparto recursos y reflexiones periódicamente.</p>
+                        <div>
+                            <a href="https://www.linkedin.com/in/alvaro-jimenez-psicologo/" target="_blank" class="fs-3 me-3" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/light_knightrider?igsh=ejcyOHNoaWprZ2Zp" target="_blank" class="fs-3 me-3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <!-- <a href="#" class="fs-3 me-3" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a> -->
+                             <a href="https://github.com/Aljimen78" target="_blank" class="fs-3 me-3" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" target="_blank" class="fs-3" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-2">&copy; 2025 Álvaro Jiménez. Todos los derechos reservados.</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item mx-2"><a href="#inicio">Inicio</a></li>
+                        <li class="list-inline-item mx-2"><a href="#sobre-mi">Sobre mí</a></li>
+                        <li class="list-inline-item mx-2"><a href="#recursos">Recursos</a></li>
+                        <li class="list-inline-item mx-2"><a href="recursos.html" target="_blank">Catálogo</a></li>
+                        <li class="list-inline-item mx-2"><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Scripts personalizados -->
+    <script src="js/scripts.js"></script>
+
+    <!-- Script para formulario de contacto -->
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxkSCqcqfQw5jfqpr1ziQ7v1WSI0oiGrBeLcQVOUkaJ8p4uaI1ySkYxqVKyigQkgJsV/exec"; // Reemplazar con tu URL
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Obtener datos del formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const asunto = document.getElementById('asunto').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+
+            // Validación básica
+            if (!nombre || !email || !asunto || !mensaje) {
+                mostrarMensaje('error', 'Por favor completa todos los campos.');
+                return;
+            }
+
+            // Validar email
+            if (!validarEmail(email)) {
+                mostrarMensaje('error', 'Por favor ingresa un email válido.');
+                return;
+            }
+
+            // Deshabilitar botón mientras se envía
+            const btnSubmit = this.querySelector('button[type="submit"]');
+            const textoOriginal = btnSubmit.textContent;
+            btnSubmit.disabled = true;
+            btnSubmit.textContent = 'Enviando...';
+
+            try {
+                // Enviar datos a Google Sheets
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: new FormData(this)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    mostrarMensaje('success', '✓ ¡Mensaje enviado correctamente! Te contactaré pronto.');
+                    this.reset(); // Limpiar formulario
+                } else {
+                    mostrarMensaje('error', 'Error al enviar el mensaje: ' + result.message);
+                }
+            } catch (error) {
+                mostrarMensaje('error', 'Error de conexión. Por favor intenta más tarde.');
+                console.error('Error:', error);
+            } finally {
+                // Restaurar botón
+                btnSubmit.disabled = false;
+                btnSubmit.textContent = textoOriginal;
+            }
+        });
+
+        // Función para validar email
+        function validarEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        // Función para mostrar mensajes
+        function mostrarMensaje(tipo, texto) {
+            const formMessage = document.getElementById('form-message');
+            formMessage.innerHTML = `
+                <div class="alert alert-${tipo === 'success' ? 'success' : 'danger'} alert-dismissible fade show" role="alert">
+                    ${texto}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+
+            // Auto-cerrar después de 5 segundos
+            setTimeout(() => {
+                formMessage.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

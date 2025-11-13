@@ -1,0 +1,369 @@
+/* 
+ * Generado para psicólogo Álvaro Jiménez
+ * Ajuste de estilos entre index.html y recursos.html
+ * Variables y clases reutilizables basadas en index.html
+ */
+
+/* ========================================
+   I. VARIABLES CSS (SISTEMA DE DISEÑO)
+   ======================================== */
+:root {
+    /* Paleta de Colores Principal (heredada de index.html) */
+    --color-primario-azul: #005A9C;
+    --color-primario-azul2:rgb(114, 196, 255);
+    --color-secundario-verde: #2E8B57;
+    --color-acento-calido: #F4A261;
+    --color-fondo-claro: #F8F9FA;
+    --color-blanco: #FFFFFF;
+    --color-texto-principal: #212529;
+    --color-texto-secundario: #6c757d;
+    
+    /* Sistema de Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+    --spacing-3xl: 6rem;
+    
+    /* Sistema de Tipografía */
+    --font-family-sans: 'Lato', sans-serif;
+    --font-family-heading: 'Poppins', sans-serif;
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    
+    /* Sistema de Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 10px 30px rgba(0, 0, 0, 0.15);
+    
+    /* Sistema de Border Radius */
+    --radius-sm: 5px;
+    --radius-md: 8px;
+    --radius-lg: 15px;
+    --radius-full: 9999px;
+    
+    /* Transiciones */
+    --transition-base: all 0.3s ease;
+    --transition-slow: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ========================================
+   II. RESET Y BASE
+   ======================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    color: var(--color-texto-principal);
+    line-height: 1.7;
+    background-color: var(--color-fondo-claro);
+}
+
+/* ========================================
+   III. TIPOGRAFÍA
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    color: var(--color-primario-azul);
+    line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+h2 { font-size: clamp(1.75rem, 5vw, 2.5rem); }
+h3 { font-size: clamp(1.5rem, 4vw, 2rem); }
+h4 { font-size: var(--font-size-2xl); }
+h5 { font-size: var(--font-size-xl); }
+h6 { font-size: var(--font-size-lg); }
+
+.lead {
+    font-size: var(--font-size-lg);
+    font-weight: 300;
+}
+
+/* ========================================
+   IV. BOTONES
+   ======================================== */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: var(--transition-base);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primario-azul);
+    color: var(--color-blanco);
+}
+
+.btn-primary:hover {
+    background-color: #004a80;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: var(--color-secundario-verde);
+    color: var(--color-blanco);
+}
+
+.btn-secondary:hover {
+    background-color: #256d44;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+    background-color: var(--color-acento-calido);
+    color: var(--color-blanco);
+}
+
+.btn-accent:hover {
+    background-color: #e38d4a;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: var(--font-size-lg);
+}
+
+/* ========================================
+   V. TARJETAS (CARDS)
+   ======================================== */
+.card {
+    background-color: var(--color-blanco);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition-base);
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: var(--spacing-md);
+}
+
+.card-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-primario-azul);
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    color: var(--color-texto-secundario);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-price {
+    font-size: var(--font-size-2xl);
+    font-weight: bold;
+    color: var(--color-secundario-verde);
+}
+
+/* ========================================
+   VI. CONTENEDORES Y LAYOUTS
+   ======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section-padding {
+    padding: var(--spacing-3xl) 0;
+}
+
+.bg-light-custom {
+    background-color: var(--color-fondo-claro);
+}
+
+/* Grid System */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--spacing-sm) * -1);
+}
+
+.col {
+    flex: 1;
+    padding: 0 var(--spacing-sm);
+}
+
+/* ========================================
+   VII. NAVEGACIÓN
+   ======================================== */
+.navbar {
+    transition: var(--transition-slow);
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-link {
+    transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-acento-calido) !important;
+}
+
+/* Tabs Navigation */
+.tab-nav {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid var(--color-fondo-claro);
+    margin-bottom: var(--spacing-lg);
+    background-color: var(--color-blanco);
+    position: sticky;
+    top: 0;
+    z-index: 500;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-texto-principal);
+    cursor: pointer;
+    transition: var(--transition-base);
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button.active {
+    color: var(--color-primario-azul);
+    border-bottom: 3px solid var(--color-primario-azul);
+}
+
+.tab-button:hover:not(.active) {
+    color: var(--color-acento-calido);
+}
+
+/* ========================================
+   VIII. FORMULARIOS
+   ======================================== */
+.form-control {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid #dee2e6;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family-sans);
+    transition: var(--transition-base);
+}
+
+.form-control:focus {
+    border-color: var(--color-secundario-verde);
+    box-shadow: 0 0 0 0.25rem rgba(46, 139, 87, 0.25);
+    outline: none;
+}
+
+/* ========================================
+   IX. UTILIDADES
+   ======================================== */
+.text-center { text-align: center; }
+.text-muted { color: var(--color-texto-secundario); }
+.fw-bold { font-weight: 700; }
+.mt-3 { margin-top: var(--spacing-sm); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+.mb-3 { margin-bottom: var(--spacing-sm); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+/* ========================================
+   X. RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .section-padding {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .card-horizontal {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 769px) {
+    .card-horizontal {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .card-horizontal .card-img-container {
+        flex-shrink: 0;
+        width: 300px;
+        height: 250px;
+    }
+    
+    .card-horizontal .card-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .card-horizontal .card-footer {
+        margin-top: auto;
+    }
+}
+
+/* ========================================
+   XI. ACCESIBILIDAD
+   ======================================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus visible para teclado */
+*:focus-visible {
+    outline: 2px solid var(--color-primario-azul);
+    outline-offset: 2px;
+}

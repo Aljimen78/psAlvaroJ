@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Recursos | Álvaro Jiménez - Psicólogo</title>
+    <meta name="description" content="Catálogo completo de recursos psicoeducativos: apps web interactivas, worksheets profesionales y herramientas corporativas.">
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/ico.jpeg">
+    <!-- Estilos Centralizados -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* Estilos específicos de recursos.html */
+        
+        /* Header con fondo sólido */
+        header {
+            background-color: var(--color-blanco);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem 0;
+            margin-bottom: 0;
+        }
+        
+        header h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Navegación por Pestañas - Centrada */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            border-bottom: 2px solid #ddd;
+            background-color: var(--color-fondo-claro);
+            padding: var(--spacing-lg) 0;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-texto-secundario);
+            cursor: pointer;
+            transition: var(--transition-base);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            color: var(--color-primario-azul);
+        }
+
+        .tab-button.active {
+            color: var(--color-primario-azul);
+            border-bottom-color: var(--color-primario-azul);
+        }
+
+        /* Contenedor de recursos */
+        #resource-store {
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* Tarjetas horizontales para recursos */
+        .resource-card {
+            display: flex;
+            flex-direction: row;
+            background-color: var(--color-blanco);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+            overflow: hidden;
+            transition: var(--transition-base);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .resource-card-image {
+            flex-shrink: 0;
+            width: 300px;
+            height: 250px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primario-azul), var(--color-secundario-verde));
+        }
+
+        .resource-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .resource-card:hover .resource-card-image img {
+            transform: scale(1.05);
+        }
+
+        .resource-card-content {
+            padding: var(--spacing-md);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--color-primario-azul);
+            margin-bottom: 0.25rem;
+        }
+
+        .resource-card-meta {
+            font-size: var(--font-size-base);
+            color: var(--color-acento-calido);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-card-description {
+            font-size: var(--font-size-base);
+            margin-bottom: var(--spacing-sm);
+            flex-grow: 1;
+        }
+
+        .resource-card-footer {
+            margin-top: auto;
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Tab content - Mostrar/Ocultar */
+        .tab-content {
+            display: none;
+            padding-top: var(--spacing-lg);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .tab-content h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 600;
+            color: var(--color-secundario-verde);
+            margin-bottom: var(--spacing-lg);
+            border-left: 5px solid var(--color-primario-azul);
+            padding-left: var(--spacing-sm);
+        }
+
+        /* Responsive: móvil - tarjetas verticales */
+        @media (max-width: 767px) {
+            .resource-card {
+                flex-direction: column;
+            }
+            .resource-card-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .tab-nav {
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+
+            .tab-button {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            header {
+                padding: 1.5rem 0;
+            }
+        }
+
+        /* Panel de tienda flotante */
+        .pack-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            max-width: calc(100vw - 40px);
+            background: var(--color-blanco);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: var(--spacing-md);
+            z-index: 1000;
+            display: none;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .pack-panel.active {
+            display: block;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .pack-panel h3 {
+            font-size: var(--font-size-xl);
+            color: var(--color-primario-azul);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .selected-item {
+            padding: var(--spacing-xs);
+            background: var(--color-fondo-claro);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--font-size-sm);
+        }
+
+        .remove-item {
+            cursor: pointer;
+            color: var(--color-acento-calido);
+            font-weight: bold;
+            padding: 0 var(--spacing-xs);
+            transition: var(--transition-base);
+        }
+
+        .remove-item:hover {
+            color: #e38d4a;
+            transform: scale(1.2);
+        }
+
+        /* Checkbox personalizado */
+        .resource-checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-sm);
+        }
+
+        .resource-checkbox-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .resource-checkbox-container label {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--color-texto-secundario);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-texto-principal);
+            color: var(--color-fondo-claro);
+            padding: var(--spacing-lg) 0;
+            margin-top: var(--spacing-3xl);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Catálogo completo de recursos</h1>
+            <p>Explora el portafolio detallado de apps web, hojas de trabajo y herramientas corporativas.</p>
+            <a href="index.html" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Volver al Portafolio principal
+            </a>
+        </div>
+    </header>
+
+    <!-- Navegación por Pestañas - Centrada -->
+    <nav class="tab-nav">
+        <button class="tab-button active" onclick="openTab(event, 'web-apps-psico')">
+            <i class="fas fa-laptop-code me-2"></i>Apps Web psicoeducativas
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'worksheets')">
+            <i class="fas fa-file-pdf me-2"></i>Worksheets y plantillas
+        </button>
+        <button class="tab-button" onclick="openTab(event, 'corporativo')">
+            <i class="fas fa-briefcase me-2"></i>Herramientas corporativas
+        </button>
+    </nav>
+
+    <main>
+        <div class="container" id="resource-store">
+            
+            <!-- ========== TAB 1: APPS WEB PSICOEDUCATIVAS ========== -->
+            <div id="web-apps-psico" class="tab-content active">
+                <h2>Aplicaciones Web psicoeducativas (Interactividad)</h2>
+
+                <!-- Recurso 1: MiniJumanji Emoción -->
+                <div class="resource-card" id="minijumanji">
+                    <div class="resource-card-image">
+                        <img src="/images/journey.webp" alt="MiniAventura Emoción">
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Aventura de emociones (AppWeb)</div>
+                        <div class="resource-card-meta">Público: Niños y adolescentes | Habilidad: Exploración emocional</div>
+                        <div class="resource-card-description">Juego interactivo tipo tablero diseñado para la exploración lúdica y la comprensión activa de las emociones y sus consecuencias en un entorno digital seguro.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://colibridoradobta.github.io/aventuraEmocion/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-play me-2"></i>Jugar App
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-1" data-title="MiniJumanji Emoción">
+                                <label for="res-1">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recurso 2: Brújula de conflictos -->
+                <div class="resource-card" id="brujula-conflictos">
+                    <div class="resource-card-image">
+                        <img src="/images/brujula.webp" alt="Brujula de soluciones">
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Brújula de soluciones</div>
+                        <div class="resource-card-meta">Público: adolescentes y jóvenes | Habilidad: Resolución de conflictos</div>
+                        <div class="resource-card-description">Herramienta digital de apoyo para el desarrollo de habilidades de resolución de conflictos. Guía a usuarios a través de la identificación de soluciones efectivas.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://colibridoradobta.github.io/ResConflictoDetective/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>Usar App
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-2" data-title="Brújula de Conflictos">
+                                <label for="res-2">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recurso 3: Emocionómetro -->
+                <div class="resource-card" id="emocionometro">
+                    <div class="resource-card-image">
+                        <img src="/images/emocionometro1.webp" alt="Reconocimiento emocional">
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Emocionómetro digital</div>
+                        <div class="resource-card-meta">Público: Niños y adolescentes | Habilidad: Reconocimiento emocional</div>
+                        <div class="resource-card-description">Aplicación para el reconocimiento, nombramiento y cuantificación de estados emocionales. Facilita la psicoeducación sobre la intensidad de las emociones.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://colibridoradobta.github.io/emocionometro/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>Usar App
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-3" data-title="Emocionómetro Digital">
+                                <label for="res-3">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recurso 4: Landing Habilidades para la Vida -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <i class="fas fa-home" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Landing Page: Habilidades para la vida</div>
+                        <div class="resource-card-meta">Público: General | Recurso: directorio web</div>
+                        <div class="resource-card-description">Página web centralizada que sirve como punto de acceso y descarga para diversos recursos psicoeducativos y guías de habilidades para la vida.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://colibridoradobta.github.io/landingPage/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>Ir a Landing
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-4" data-title="Landing Page Habilidades">
+                                <label for="res-4">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recurso 5: Juego el Colibrí Dorado -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <i class="fas fa-dove" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">El Colibrí dorado (Juego habilidades)</div>
+                        <div class="resource-card-meta">Público: Jóvenes | Habilidad: Habilidades para la vida y valores</div>
+                        <div class="resource-card-description">Juego interactivo diseñado para fomentar el aprendizaje activo y la toma de decisiones positivas en situaciones sociales y personales para jóvenes.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://colibridoradobta.github.io/elColibriDorado.github.io/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-play me-2"></i>Jugar App
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-5" data-title="El Colibrí Dorado">
+                                <label for="res-5">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recurso 6: Historia Luz y Sombra -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <img src="/images/luzYsombra.webp" alt="Autoconocimiento y misterio">
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Historia 'Luz y sombra' (Jung)</div>
+                        <div class="resource-card-meta">Público: Adolescentes y Adultos jóvenes | Tópico: Autoconocimiento</div>
+                        <div class="resource-card-description">Narrativa digital con enfoque en el autoconocimiento, basada en los conceptos arquetípicos de Carl Jung (Sombra). Diseño de baja fidelidad y alto impacto conceptual.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://colibridoradobta.github.io/lightNshadow/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-book me-2"></i>Ver Historia
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-6" data-title="Historia luz y sombra">
+                                <label for="res-6">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========== TAB 2: WORKSHEETS Y PLANTILLAS ========== -->
+            <div id="worksheets" class="tab-content">
+                <h2>Plantillas y worksheets (Recursos Descargables)</h2>
+
+                <!-- Worksheet 1 -->
+                <div class="resource-card" id="echo-escucha">
+                    <div class="resource-card-image">
+                        <i class="fas fa-ear-listen" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Seamos grandes Oyentes con Echo</div>
+                        <div class="resource-card-meta">Habilidad: Escucha activa | Público: Niños</div>
+                        <div class="resource-card-description">Plantilla (en inglés) que enseña las 4 reglas clave de la escucha activa (contacto visual, silencio, empatía y respuesta) utilizando un personaje amigable.</div>
+                        <div class="resource-card-footer">
+                            <button class="btn btn-accent" onclick="openRegistroModal('Echo Escucha Activa', 'echo-escucha.pdf')">
+                                <i class="fas fa-download me-2"></i>Descargar PDF
+                            </button>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-7" data-title="Echo Escucha Activa">
+                                <label for="res-7">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worksheet 2 -->
+                <div class="resource-card" id="receta-amistad">
+                    <div class="resource-card-image">
+                        <i class="fas fa-utensils" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Receta de la amistad</div>
+                        <div class="resource-card-meta">Habilidad: Habilidades sociales | Público: Niños</div>
+                        <div class="resource-card-description">Actividad (en inglés) creativa que usa la metáfora de una receta para que los niños definan y mezclen los "ingredientes" esenciales de una amistad saludable.</div>
+                        <div class="resource-card-footer">
+                            <button class="btn btn-accent" onclick="openRegistroModal('Receta de la Amistad', 'receta-amistad.pdf')">
+                                <i class="fas fa-download me-2"></i>Descargar PDF
+                            </button>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-8" data-title="Receta de la Amistad">
+                                <label for="res-8">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worksheet 3 -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <i class="fas fa-star" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Aventura de superpoderes sociales</div>
+                        <div class="resource-card-meta">Habilidad: Relaciones y amistad | Público: Niños</div>
+                        <div class="resource-card-description">Worksheet (en inglés) para explorar formas de pasar tiempo en familia y desarrollar la confianza (Friendship Star Power) para iniciar nuevas amistades.</div>
+                        <div class="resource-card-footer">
+                            <button class="btn btn-accent" onclick="openRegistroModal('Aventura de Superpoderes Sociales', 'superpoderes-sociales.pdf')">
+                                <i class="fas fa-download me-2"></i>Descargar PDF
+                            </button>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-9" data-title="Superpoderes Sociales">
+                                <label for="res-9">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worksheet 4 -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <i class="fas fa-gem" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Mi voz mágica</div>
+                        <div class="resource-card-meta">Habilidad: comunicación asertiva | Público: Niños</div>
+                        <div class="resource-card-description">Plantilla visual (en inglés), de una joya que desglosa los componentes de una comunicación efectiva: volumen, mensaje, contacto visual y lenguaje corporal.</div>
+                        <div class="resource-card-footer">
+                            <button class="btn btn-accent" onclick="openRegistroModal('Mi Voz Mágica', 'mi-voz-magica.pdf')">
+                                <i class="fas fa-download me-2"></i>Descargar PDF
+                            </button>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-10" data-title="Mi Voz Mágica">
+                                <label for="res-10">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worksheet 5 -->
+                <div class="resource-card" id="kit-calma">
+                    <div class="resource-card-image">
+                        <i class="fas fa-spa" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Kit de calma de Zen</div>
+                        <div class="resource-card-meta">Habilidad: Regulación emocional | Público: Niños</div>
+                        <div class="resource-card-description">Caja de herramientas con técnicas de regulación emocional como "Nombrar para Controlar", "Mover el Cuerpo" y la técnica de "Cinco Sentidos".</div>
+                        <div class="resource-card-footer">
+                            <button class="btn btn-accent" onclick="openRegistroModal('Kit de Calma de Zen', 'kit-calma.pdf')">
+                                <i class="fas fa-download me-2"></i>Descargar PDF
+                            </button>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-11" data-title="Kit de Calma">
+                                <label for="res-11">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========== TAB 3: HERRAMIENTAS CORPORATIVAS ========== -->
+            <div id="corporativo" class="tab-content">
+                <h2>Herramientas Corporativas (Gestión y organización)</h2>
+
+                <!-- Corp 1 -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <i class="fas fa-pills" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Registro farmacéutico FMMN</div>
+                        <div class="resource-card-meta">Público: institucional / Gestión</div>
+                        <div class="resource-card-description">Plataforma para la gestión y registro eficiente de medicamentos. Optimiza la trazabilidad y organización de inventarios para entidades de protección social.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://aljimen78.github.io/medicamentosFMMN/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>Ver App
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-12" data-title="Registro Farmacéutico">
+                                <label for="res-12">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corp 2 -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <i class="fas fa-id-card" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Tarjeta virtual de eventos (con lista de regalos)</div>
+                        <div class="resource-card-meta">Público: Clientes / Eventos</div>
+                        <div class="resource-card-description">Tarjeta digital de presentación y reserva para un servicio o evento especial. Diseño limpio y enfocado en la conversión y la información clave. Mantén el control de quien escogió un item de tu lista de regalos</div>
+                        <div class="resource-card-footer">
+                            <a href="https://aljimen78.github.io/apartaShower/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>Ver tarjeta
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-13" data-title="Tarjeta Vi&Leo">
+                                <label for="res-13">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corp 3 -->
+                <div class="resource-card">
+                    <div class="resource-card-image">
+                        <i class="fas fa-clipboard-list" style="font-size: 5rem; color: white;"></i>
+                    </div>
+                    <div class="resource-card-content">
+                        <div class="resource-card-title">Registro de pedidos - Leo</div>
+                        <div class="resource-card-meta">Público: empresas / interno</div>
+                        <div class="resource-card-description">Herramienta simplificada para la captura de pedidos. Facilita la logística y el seguimiento de órdenes, mejorando el servicio al cliente.</div>
+                        <div class="resource-card-footer">
+                            <a href="https://aljimen78.github.io/yogurtLeo/" target="_blank" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt me-2"></i>Ver App
+                            </a>
+                            <div class="resource-checkbox-container">
+                                <input type="checkbox" class="resource-checkbox" id="res-14" data-title="Registro de Pedidos">
+                                <label for="res-14">Agregar al pack</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Panel flotante para crear packs -->
+        <div id="pack-panel" class="pack-panel">
+            <h3><i class="fas fa-box-open me-2"></i>Mi pack personalizado</h3>
+            <div id="selected-items" class="mb-3"></div>
+            <div class="pack-customization mb-3">
+                <input type="text" id="pack-name" class="form-control mb-2" placeholder="Nombre del pack" value="Mi Pack de Recursos">
+                <textarea id="pack-description" class="form-control mb-2" rows="2" placeholder="Descripción breve (opcional)"></textarea>
+            </div>
+            <button onclick="downloadPack()" class="btn btn-accent w-100 mb-2">
+                <i class="fas fa-download me-2"></i>Descargar Pack (JSON)
+            </button>
+            <button onclick="savePreset()" class="btn btn-secondary w-100">
+                <i class="fas fa-save me-2"></i>Guardar Preset
+            </button>
+        </div>
+
+        <!-- Modal de Registro para Descargar PDF -->
+        <div id="registroModal" class="modal fade" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: linear-gradient(135deg, var(--color-primario-azul), var(--color-secundario-verde)); color: white; border: none;">
+                        <h5 class="modal-title" id="registroModalLabel">
+                            <i class="fas fa-gift me-2"></i>Desbloquea tu recurso exclusivo
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 2rem;">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-file-pdf" style="font-size: 3rem; color: var(--color-acento-calido);"></i>
+                        </div>
+                        <h6 class="text-center mb-3" id="pdfName">Recurso Seleccionado</h6>
+                        <p class="text-center text-muted mb-4">
+                            Regístrate ahora y recibe <strong>gratis</strong> este material psicoeducativo directamente en tu correo. 
+                            Además, accederás a futuras actualizaciones y recursos exclusivos.
+                        </p>
+
+                        <form id="registroForm" novalidate>
+                            <div class="mb-3">
+                                <label for="reg-nombre" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="reg-nombre" name="nombre" required>
+                                <div class="invalid-feedback">Por favor, ingresa tu nombre.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="reg-email" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="reg-email" name="email" required>
+                                <div class="invalid-feedback">Por favor, ingresa un email válido.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="reg-asunto" class="form-label">Asunto / Herramienta solicitada</label>
+                                <input type="text" class="form-control" id="reg-asunto" name="asunto" readonly style="background-color: #f8f9fa;">
+                                <small class="text-muted">Este campo se completa automáticamente</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="reg-mensaje" class="form-label">Mensaje adicional (requerido)</label>
+                                <textarea class="form-control" id="reg-mensaje" name="mensaje" rows="4" placeholder="Cuéntame por qué te interesa este recurso o comparte algún comentario..." required></textarea>
+                                <div class="invalid-feedback">Por favor, escribe un mensaje.</div>
+                                <small class="text-muted d-block mt-1">Mínimo 10 caracteres</small>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="reg-privacidad" name="privacidad" required>
+                                <label class="form-check-label small" for="reg-privacidad">
+                                    Acepto recibir actualizaciones y recursos exclusivos de Álvaro Jiménez
+                                </label>
+                                <div class="invalid-feedback d-block">Debes aceptar para continuar.</div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100" id="btnDescargar">
+                                <i class="fas fa-download me-2"></i>Descargar PDF Gratis
+                            </button>
+                        </form>
+
+                        <p class="text-center text-muted small mt-3">
+                            <i class="fas fa-lock me-1"></i>Tus datos están seguros y no serán compartidos
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Álvaro Jiménez. Todos los derechos reservados.</p>
+            <p class="small">
+                <a href="index.html">Volver al portafolio</a> | 
+                <a href="mailto:aljimenez.n@gmail.com">Contacto</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Scripts personalizados -->
+    <script src="js/scripts.js"></script>
+
+    <script>
+        // Función para cambiar de pestaña
+        function openTab(evt, tabName) {
+            // Ocultar todos los tab-content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remover clase active de todos los botones
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar el tab seleccionado
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Script específico para la funcionalidad de tienda en recursos.html
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedResources = new Set();
+            
+            // Cargar selección guardada
+            loadSavedSelection();
+            
+            // Event listeners para todos los checkboxes
+            document.querySelectorAll('.resource-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const title = this.getAttribute('data-title');
+                    const id = this.id;
+                    
+                    if (this.checked) {
+                        selectedResources.add({id, title});
+                    } else {
+                        const toRemove = Array.from(selectedResources).find(r => r.id === id);
+                        if (toRemove) selectedResources.delete(toRemove);
+                    }
+                    
+                    updatePackPanel();
+                    saveSelection();
+                });
+                
+                // Restaurar estado del checkbox si estaba seleccionado
+                const saved = Array.from(selectedResources).find(r => r.id === checkbox.id);
+                if (saved) {
+                    checkbox.checked = true;
+                }
+            });
+            
+            function updatePackPanel() {
+                const panel = document.getElementById('pack-panel');
+                const itemsContainer = document.getElementById('selected-items');
+                
+                if (selectedResources.size > 0) {
+                    panel.classList.add('active');
+                    
+                    itemsContainer.innerHTML = '<p class="small text-muted mb-2">Recursos seleccionados (' + selectedResources.size + '):</p>';
+                    
+                    Array.from(selectedResources).forEach(resource => {
+                        const item = document.createElement('div');
+                        item.className = 'selected-item';
+                        item.innerHTML = `
+                            <span style="flex: 1;">${resource.title}</span>
+                            <span class="remove-item" onclick="removeFromPack('${resource.id}')" title="Quitar">✕</span>
+                        `;
+                        itemsContainer.appendChild(item);
+                    });
+                } else {
+                    panel.classList.remove('active');
+                }
+            }
+            
+            window.removeFromPack = function(resourceId) {
+                const checkbox = document.getElementById(resourceId);
+                if (checkbox) {
+                    checkbox.checked = false;
+                    checkbox.dispatchEvent(new Event('change'));
+                }
+            };
+            
+            window.downloadPack = function() {
+                if (selectedResources.size === 0) {
+                    alert('Por favor selecciona al menos un recurso para crear el pack.');
+                    return;
+                }
+                
+                const packName = document.getElementById('pack-name')?.value || 'mi-pack';
+                const packDescription = document.getElementById('pack-description')?.value || '';
+                
+                const packData = {
+                    name: packName,
+                    description: packDescription,
+                    createdAt: new Date().toISOString(),
+                    createdBy: 'Álvaro Jiménez - Psicólogo',
+                    totalResources: selectedResources.size,
+                    resources: Array.from(selectedResources).map(r => ({
+                        id: r.id,
+                        title: r.title,
+                        includeInPack: true
+                    }))
+                };
+                
+                const dataStr = JSON.stringify(packData, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                const sanitizedName = packName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+                link.download = `pack-${sanitizedName}-${Date.now()}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+                
+                alert('¡Pack descargado exitosamente! ' + selectedResources.size + ' recursos incluidos.');
+            };
+            
+            window.savePreset = function() {
+                if (selectedResources.size === 0) {
+                    alert('Por favor selecciona al menos un recurso antes de guardar el preset.');
+                    return;
+                }
+                
+                const packName = document.getElementById('pack-name')?.value || 'preset';
+                const packDescription = document.getElementById('pack-description')?.value || '';
+                
+                const preset = {
+                    name: packName,
+                    description: packDescription,
+                    savedAt: new Date().toISOString(),
+                    resources: Array.from(selectedResources)
+                };
+                
+                const allPresets = JSON.parse(localStorage.getItem('resourcePresets') || '[]');
+                allPresets.push(preset);
+                localStorage.setItem('resourcePresets', JSON.stringify(allPresets));
+                
+                alert(`Preset "${packName}" guardado exitosamente!\n\nTotal de presets guardados: ${allPresets.length}`);
+            };
+            
+            function saveSelection() {
+                localStorage.setItem('selectedResources', JSON.stringify(Array.from(selectedResources)));
+            }
+            
+            function loadSavedSelection() {
+                const saved = localStorage.getItem('selectedResources');
+                if (saved) {
+                    try {
+                        const parsed = JSON.parse(saved);
+                        parsed.forEach(resource => selectedResources.add(resource));
+                        updatePackPanel();
+                    } catch (e) {
+                        console.error('Error loading saved selection:', e);
+                    }
+                }
+            }
+            
+            if (selectedResources.size > 0) {
+                updatePackPanel();
+            }
+        });
+    </script>
+
+    <script>
+        // Variables globales para el modal
+        let currentPdfFile = '';
+        let currentPdfName = '';
+
+        // Función para abrir el modal
+        function openRegistroModal(resourceName, pdfFile) {
+            currentPdfName = resourceName;
+            currentPdfFile = pdfFile;
+            
+            document.getElementById('pdfName').textContent = resourceName;
+            document.getElementById('reg-asunto').value = `Solicitud: ${resourceName}`;
+            document.getElementById('reg-mensaje').value = `Interesado en: ${resourceName}\n\n`;
+            document.getElementById('reg-nombre').value = '';
+            document.getElementById('reg-email').value = '';
+            document.getElementById('reg-privacidad').checked = false;
+            document.getElementById('registroForm').classList.remove('was-validated');
+            
+            setTimeout(() => {
+                const textarea = document.getElementById('reg-mensaje');
+                textarea.focus();
+                textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+            }, 100);
+            
+            const modal = new bootstrap.Modal(document.getElementById('registroModal'));
+            modal.show();
+        }
+
+        // Validación y envío del formulario
+        document.getElementById('registroForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!this.checkValidity()) {
+                this.classList.add('was-validated');
+                return;
+            }
+
+            const mensaje = document.getElementById('reg-mensaje').value.trim();
+            if (mensaje.length < 10) {
+                alert('El mensaje debe tener al menos 10 caracteres.');
+                document.getElementById('reg-mensaje').focus();
+                return;
+            }
+
+            const nombre = document.getElementById('reg-nombre').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const asunto = document.getElementById('reg-asunto').value.trim();
+            const recurso = currentPdfName;
+
+            const btnDescargar = document.getElementById('btnDescargar');
+            const textoOriginal = btnDescargar.innerHTML;
+            btnDescargar.disabled = true;
+            btnDescargar.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Procesando...';
+
+            try {
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxkSCqcqfQw5jfqpr1ziQ7v1WSI0oiGrBeLcQVOUkaJ8p4uaI1ySkYxqVKyigQkgJsV/exec";
+                
+                const url = new URL(GOOGLE_SCRIPT_URL);
+                url.searchParams.append('nombre', nombre);
+                url.searchParams.append('email', email);
+                url.searchParams.append('asunto', asunto);
+                url.searchParams.append('mensaje', mensaje);
+                url.searchParams.append('recurso_solicitado', recurso);
+                url.searchParams.append('tipo_formulario', 'descarga_pdf');
+
+                await fetch(url.toString(), {
+                    method: 'POST',
+                    mode: 'no-cors'
+                });
+
+                simulateDownload(currentPdfFile, currentPdfName);
+
+                btnDescargar.innerHTML = '<i class="fas fa-check me-2"></i>¡Descarga completada!';
+                btnDescargar.classList.remove('btn-primary');
+                btnDescargar.classList.add('btn-success');
+
+                setTimeout(() => {
+                    bootstrap.Modal.getInstance(document.getElementById('registroModal')).hide();
+                    btnDescargar.innerHTML = textoOriginal;
+                    btnDescargar.classList.remove('btn-success');
+                    btnDescargar.classList.add('btn-primary');
+                    btnDescargar.disabled = false;
+                }, 2000);
+
+                console.log('Registro guardado:', {nombre, email, asunto, recurso});
+
+            } catch (error) {
+                console.error('Error:', error);
+                btnDescargar.innerHTML = '<i class="fas fa-exclamation-triangle me-2"></i>Error al procesar';
+                btnDescargar.classList.add('btn-danger');
+                
+                setTimeout(() => {
+                    btnDescargar.innerHTML = textoOriginal;
+                    btnDescargar.classList.remove('btn-danger');
+                    btnDescargar.disabled = false;
+                }, 3000);
+            }
+        });
+
+        function simulateDownload(fileName, resourceName) {
+            const pdfContent = `
+RECURSO PSICOEDUCATIVO (Recibo de pedido): ${resourceName}
+Creado por: Álvaro Jiménez - Psicólogo
+Fecha de descarga: ${new Date().toLocaleDateString('es-ES')}
+Hora: ${new Date().toLocaleTimeString('es-ES')}
+
+Este es un recurso exclusivo para tu crecimiento personal y profesional.
+
+Para recibir el PDF completo con diseño profesional, por favor:
+1. Verifica tu correo electrónico
+2. Descarga el archivo PDF adjunto al correo que recibirás
+3. Comparte tus comentarios conmigo
+
+Gracias por usar mis recursos.
+            `;
+
+            const blob = new Blob([pdfContent], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${resourceName.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.txt`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
