@@ -318,6 +318,11 @@ h6 { font-size: var(--font-size-lg); }
     .section-padding {
         padding: var(--spacing-2xl) 0;
     }
+
+   .navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-sm);
+}
     
     .card-horizontal {
         flex-direction: column;
@@ -329,6 +334,11 @@ h6 { font-size: var(--font-size-lg); }
         display: flex;
         flex-direction: row;
     }
+
+   .navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-sm);
+}
     
     .card-horizontal .card-img-container {
         flex-shrink: 0;
@@ -366,4 +376,5 @@ h6 { font-size: var(--font-size-lg); }
 *:focus-visible {
     outline: 2px solid var(--color-primario-azul);
     outline-offset: 2px;
+
 }
